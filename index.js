@@ -11,13 +11,17 @@ app.use(json({ verify: (req, res, buf) => { req.rawBody = buf; }, limit: '50mb' 
 app.use(urlencoded({ limit: '50mb', extended: true }));
 
 
-app.use(_json({ limit: '5mb' }));
+app.use(_json({ limit: '50mb' }));
 
 import auth from './APIs/routes/auth.js';
 import errorHandler from './error-handler.js';
+import product from './APIs/routes/product.js'
+
+
 app.use(errorHandler);
 
 app.use('/api/auth', auth)
+app.use('/api/product', product)
 
 app.use((req, res, next) => {
     console.log(`Received ${req.method} request for ${req.url}`);

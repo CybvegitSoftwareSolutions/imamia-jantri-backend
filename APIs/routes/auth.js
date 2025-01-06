@@ -13,8 +13,6 @@ const router = Router();
 import { executeQuery } from '../helper/db.js'
 
 router.post('/login', async function (req, res) {
-    console.log("inside login request !!!!");
-
     const sql = 'call sp_login(?,?)';
     const params = [
         req.body.email,
@@ -22,14 +20,11 @@ router.post('/login', async function (req, res) {
     ];
 
     const result = await executeQuery(sql, params)
-    console.log("result ====>", result);
     res.send(result)
 
 })
 
 router.post('/signup', async function (req, res) {
-    console.log("inside signup request !!!!");
-
     const sql = 'call sp_signup(?,?,?,?,?)';
     const params = [
         req.body.name,
@@ -40,11 +35,21 @@ router.post('/signup', async function (req, res) {
     ];
 
     const result = await executeQuery(sql, params)
-    console.log("result ====>", result);
     res.send(result)
 
 })
 
+router.post('/updateDeviceToken', async function (req, res) {
+    const sql = 'call sp_updateDeviceToken(?,?)';
+    const params = [
+        req.body.user_id,
+        req.body.device_token
+    ];
+
+    const result = await executeQuery(sql, params)
+    res.send(result)
+
+})
 
 export default router;
 
