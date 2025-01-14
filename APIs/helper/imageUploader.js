@@ -34,7 +34,7 @@ export async function uploadBase64Image(base64Image) {
         // Return a Promise that resolves on stream completion
         return new Promise((resolve, reject) => {
             writeStream.on('finish', () => {
-                const imageUrl = `http://154.38.181.14/images/${imageName}`;
+                const imageUrl = `http://194.233.69.219/images/${imageName}`;
                 resolve(successResponse(imageUrl, 'Image uploaded successfully!', true));
             });
 

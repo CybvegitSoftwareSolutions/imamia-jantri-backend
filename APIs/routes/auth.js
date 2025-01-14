@@ -13,6 +13,8 @@ const router = Router();
 import { executeQuery } from '../helper/db.js'
 
 router.post('/login', async function (req, res) {
+    console.log("login req" , req.body);
+    
     const sql = 'call sp_login(?,?)';
     const params = [
         req.body.email,
@@ -25,13 +27,14 @@ router.post('/login', async function (req, res) {
 })
 
 router.post('/signup', async function (req, res) {
-    const sql = 'call sp_signup(?,?,?,?,?)';
+    const sql = 'call sp_insertUser(?,?,?,?,?,?)';
     const params = [
         req.body.name,
         req.body.email,
         req.body.phone,
         req.body.password,
-        req.body.device_token
+        req.body.device_token,
+        req.body.image
     ];
 
     const result = await executeQuery(sql, params)

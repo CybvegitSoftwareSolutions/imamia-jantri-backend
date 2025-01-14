@@ -7,8 +7,9 @@ import { errorResponse, successResponse } from '../helper/response.js';
 const dbConfig = {
     host: 'localhost',
     user: 'root',
-    database: 'dealer',
-    password: 'hamza1134'
+    database: 'jantri',
+    // password: 'hamza1134'
+    password: 'Cybvegit1134@',
 };
 
 /**
@@ -25,6 +26,8 @@ export async function executeQuery(sql, params) {
 
         // Execute the query
         const [[rows]] = await connection.execute(sql, params);
+        console.log("rows ===>" , rows);
+        
         // Check if rows contain valid data and return a formatted response
         if (rows.length > 0) {
             return successResponse(rows?.length > 1 ? rows : rows[0], 'Query executed successfully', true, rows.length);
